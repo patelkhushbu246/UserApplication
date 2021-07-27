@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
+import java.util.ArrayList;
+
 import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -62,6 +65,33 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return res;
     }
+    public Cursor retrivedata(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor c=db.rawQuery("select * from "+TABLE_REG,null);
+        /*ArrayList<User> arr=new ArrayList<User>();
+        Cursor c=db.query("registrationdetails",null,null,null,null,null,null);
+        while (c.moveToNext()){
+            int id=c.getInt(0);
+            String fname=c.getString(1);
+            String lname=c.getString(2);
+            String gender=c.getString(6);
+            String hobby1=c.getString(8);
+            String hobby2=c.getString(9);
+            String hobby3=c.getString(10);
+            User u=new User();
+            u.setId(id);
+            u.setFname(fname);
+            u.setLname(lname);
+            u.setGender(gender);
+            u.setHobby1(hobby1);
+            u.setHobby2(hobby2);
+            u.setHobby3(hobby3);
+            arr.add(u);
+
+        }*/
+
+        return c;
+    }
     public boolean checklogin(String username, String password){
         String[] column={KEY_ID};
         SQLiteDatabase db=this.getReadableDatabase();
@@ -70,10 +100,12 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor c=db.query("registrationdetails",column,selection,selectionArgs,null,null,null);
         int res=c.getCount();
         db.close();
-        if(res>0)
+        if(res>0) {
             return true;
-        else
+        }
+        else {
             return false;
+        }
     }
 }
 

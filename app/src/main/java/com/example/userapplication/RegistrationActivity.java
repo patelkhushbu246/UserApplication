@@ -105,4 +105,5 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 }
