@@ -7,11 +7,30 @@ public class User {
     private String email;
     private String uname;
     private String pass;
+    private String  gen;
     private String gender;
     private String utype;
     private String hobby1;
     private String hobby2;
     private String hobby3;
+
+    public User(){
+
+    }
+
+
+   /* public User(String fname, String lname, String email, String uname, String pass, String gen, String utype, String hobby1, String hobby2, String hobby3) {
+        this.fname=fname;
+        this.lname = lname;
+        this.email = email;
+        this.uname = uname;
+        this.pass = pass;
+        this.gen = gen;
+        this.utype = utype;
+        this.hobby1 = hobby1;
+        this.hobby2 = hobby2;
+        this.hobby3 = hobby3;
+    }*/
 
 
     public String getFname() {
@@ -103,15 +122,15 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
-    public User(String fname,String lname,String gender,String hobby1,String hobby2,String hobby3){
-        this.fname=fname;
-        this.lname=lname;
-        this.gender=gender;
-        this.hobby1=hobby1;
+   /* public User(String fname, String lname, String gender, String hobby1, String hobby2, String hobby3){
+        this.fname= fname;
+        this.lname= lname;
+        this.gender= gender;
+        this.hobby1= hobby1;
         this.hobby2=hobby2;
-        this.hobby3=hobby3;
+        this.hobby3= hobby3;
 
-    }
+    }*/
 
 
 }

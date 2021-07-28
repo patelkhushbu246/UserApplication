@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Firstname"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textSize="22sp"
         android:id="@+id/tv_fname_dispay"/>
         <TextView
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Lastname"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="22sp"
             android:id="@+id/tv_lname_dispay"/>
     </LinearLayout>
@@ -28,6 +30,7 @@
         android:text="Gender"
         android:textStyle="italic"
         android:layout_marginTop="25dp"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:id="@+id/tv_gender_dispay"/>
     <TextView
@@ -36,8 +39,14 @@
         android:text="Hobby"
         android:textStyle="italic"
         android:layout_below="@+id/tv_gender_dispay"
+        android:textColor="@color/black"
         android:textSize="16sp"
         android:id="@+id/tv_hobby_dispay"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/regid"/>
 
 </RelativeLayout>

@@ -1,71 +1,78 @@
 package com.example.userapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.net.CookieHandler;
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class ListAdapter extends ArrayAdapter {
+public class ListAdapter extends BaseAdapter {
 
-    List list=new ArrayList();
-    public ListAdapter(Context context, int resource) {
-        super(context, resource);
+    ArrayList<User>arruser;
+     Activity act;
 
-    }
-    static class LayoutHandler{
-        TextView fname_tv,lname_tv,gender_tv,hobby_tv;
-    }
-
-    @Override
-    public void add(@Nullable Object object) {
-        super.add(object);
-        list.add(object);
+    public  ListAdapter(Activity act,ArrayList<User>arruser){
+        this.act=act;
+        this.arruser=arruser;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return arruser.size();
     }
 
-    @Nullable
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return null;
     }
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View row=convertView;
-        LayoutHandler lh;
-        if (row==null){
-            LayoutInflater inflater=(LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row=inflater.inflate(R.layout.listview,parent,false);
-            lh=new LayoutHandler();
-            lh.fname_tv=(TextView)row.findViewById(R.id.tv_fname_dispay);
-            lh.lname_tv=(TextView)row.findViewById(R.id.tv_lname_dispay);
-            lh.gender_tv=(TextView)row.findViewById(R.id.tv_gender_dispay);
-            lh.hobby_tv=(TextView)row.findViewById(R.id.tv_hobby_dispay);
-            row.setTag(lh);
-        }else {
-            lh=(LayoutHandler)row.getTag();
-        }
-        User u=(User)this.getItem(position);
-        lh.fname_tv.setText(u.getFname());
-        lh.lname_tv.setText(u.getLname());
-        lh.gender_tv.setText(u.getGender());
-        lh.hobby_tv.setText(u.getHobby1());
-        lh.hobby_tv.setText(u.getHobby2());
-        lh.hobby_tv.setText(u.getHobby3());
-        return row;
+    public long getItemId(int i) {
+        return arruser.get(i).getId();
+    }
 
+    private class ViewHolder{
+        TextView fname_tv,lname_tv,gender_tv,hobby_tv,regid_tv;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        final ViewHolder vh;
+        LayoutInflater inflater=act.getLayoutInflater();
+        //LayoutInflater inflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        if (view == null) {
+            view = inflater.inflate(R.layout.listview,null);
+            vh = new ViewHolder();
+            vh.fname_tv = (TextView) view.findViewById(R.id.tv_fname_dispay);
+            vh.lname_tv = (TextView) view.findViewById(R.id.tv_lname_dispay);
+            vh.gender_tv = (TextView) view.findViewById(R.id.tv_gender_dispay);
+            vh.hobby_tv = (TextView) view.findViewById(R.id.tv_hobby_dispay);
+            vh.regid_tv = (TextView) view.findViewById(R.id.regid);
+            view.setTag(vh);
+         }else {
+            vh=(ViewHolder)view.getTag();
+        }
+        vh.fname_tv.setText(arruser.get(i).getFname());
+        vh.lname_tv.setText(arruser.get(i).getLname());
+        vh.gender_tv.setText(arruser.get(i).getGender());
+        //if (arruser.get(i).getHobby1().equals("movies"))
+            vh.hobby_tv.setText(arruser.get(i).getHobby1());
+       // if (arruser.get(i).getHobby1().equals("music"))
+            vh.hobby_tv.setText(arruser.get(i).getHobby2());
+       // if (arruser.get(i).getHobby1().equals("travelling"))
+            vh.hobby_tv.setText(arruser.get(i).getHobby3());
+        vh.regid_tv.setText(arruser.get(i).getId()+"");
+
+        return view;
     }
 }

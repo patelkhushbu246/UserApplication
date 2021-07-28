@@ -58,39 +58,59 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put("Password",pass);
         cv.put("Gender",gen);
         cv.put("Usertype",utype);
-        cv.put("Hobby1",hobby1);
-        cv.put("Hobby2",hobby2);
-        cv.put("Hobby3",hobby3);
+            cv.put("Hobby1", hobby1);
+            cv.put("Hobby2", hobby2);
+            cv.put("Hobby3",hobby3);
         long res=db.insert(TABLE_REG,null,cv);
         db.close();
         return res;
     }
-    public Cursor retrivedata(){
+    public ArrayList<User> retrivedata(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        String strqry="select * from "+TABLE_REG;
+        Cursor c=db.rawQuery(strqry,null);
+        ArrayList<User> arrayList=new ArrayList<>();
+        if (c.moveToFirst()){
+            do {
+                User u=new User();
+                u.setId(c.getInt(c.getColumnIndex("ID")));
+                u.setFname(c.getString(c.getColumnIndex("Fname")));
+                u.setLname(c.getString(c.getColumnIndex("Lname")));
+                u.setGender(c.getString(c.getColumnIndex("Gender")));
+                u.setHobby1(c.getString(c.getColumnIndex("Hobby1")));
+                u.setHobby2(c.getString(c.getColumnIndex("Hobby2")));
+                u.setHobby3(c.getString(c.getColumnIndex("Hobby3")));
+                arrayList.add(u);
+            }while (c.moveToNext());
+
+        }
+        db.close();
+        return arrayList;
+
+    }
+
+    public User selectbyId(int id){
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor c=db.rawQuery("select * from "+TABLE_REG,null);
-        /*ArrayList<User> arr=new ArrayList<User>();
-        Cursor c=db.query("registrationdetails",null,null,null,null,null,null);
-        while (c.moveToNext()){
-            int id=c.getInt(0);
-            String fname=c.getString(1);
-            String lname=c.getString(2);
-            String gender=c.getString(6);
-            String hobby1=c.getString(8);
-            String hobby2=c.getString(9);
-            String hobby3=c.getString(10);
-            User u=new User();
-            u.setId(id);
-            u.setFname(fname);
-            u.setLname(lname);
-            u.setGender(gender);
-            u.setHobby1(hobby1);
-            u.setHobby2(hobby2);
-            u.setHobby3(hobby3);
-            arr.add(u);
+        String str="select * from registrationdetails where ID="+id;
+        Cursor c=db.rawQuery(str,null);
+        //Cursor c=db.rawQuery("select * from registrationdetails where ID='"+id+"'",null);
+        User u=new User();
+        if (c.moveToFirst()){
+            u.setId(c.getInt(c.getColumnIndex("ID")));
+            u.setFname(c.getString(c.getColumnIndex("Fname")));
+            u.setLname(c.getString(c.getColumnIndex("Lname")));
+            u.setEmail(c.getString(c.getColumnIndex("Email")));
+            u.setUname(c.getString(c.getColumnIndex("Uname")));
+            u.setPass(c.getString(c.getColumnIndex("Password")));
+            u.setGender(c.getString(c.getColumnIndex("Gender")));
+            u.setUtype(c.getString(c.getColumnIndex("Usertype")));
+            u.setHobby1(c.getString(c.getColumnIndex("Hobby1")));
+            u.setHobby2(c.getString(c.getColumnIndex("Hobby2")));
+            u.setHobby3(c.getString(c.getColumnIndex("Hobby3")));
+        }
 
-        }*/
-
-        return c;
+        db.close();
+        return u;
     }
     public boolean checklogin(String username, String password){
         String[] column={KEY_ID};

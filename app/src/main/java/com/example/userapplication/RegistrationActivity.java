@@ -2,7 +2,9 @@ package com.example.userapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -67,18 +69,18 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
                 RadioButton checkid=findViewById(rbg.getCheckedRadioButtonId());
                 String gender = checkid.getText().toString().trim();
                 String usertype=utype_spinner.getItemAtPosition(utype_spinner.getSelectedItemPosition()).toString().trim();
-                StringBuffer sb=new StringBuffer();
-                String hobby1 = movies_check.getText().toString().trim();
-                String hobby2 = music_check.getText().toString().trim();
-                String hobby3=travelling_check.getText().toString().trim();
-                if (movies_check.isSelected()) {
-                    sb.append(hobby1);
+                //StringBuffer sb=new StringBuffer();
+                String hobby1 = "movie";
+                String hobby2 ="music";
+                String hobby3="travelling";
+                if (movies_check.isChecked()) {
+                    hobby1=movies_check.getText().toString();
                 }
-                if (music_check.isSelected()) {
-                    sb.append(hobby2);
+                if (music_check.isChecked()) {
+                    hobby2=music_check.getText().toString();
                 }
-                if (travelling_check.isSelected()) {
-                    sb.append(hobby3);
+                if (travelling_check.isChecked()) {
+                    hobby3=travelling_check.getText().toString();
                 }
 
                 if(pwd.equals(cpwd)){
@@ -95,6 +97,9 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
             }
         });
     }
+
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
