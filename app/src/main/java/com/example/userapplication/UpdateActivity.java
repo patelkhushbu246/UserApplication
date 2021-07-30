@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -15,7 +18,7 @@ import static java.lang.Integer.parseInt;
 public class UpdateActivity extends AppCompatActivity {
 
     TextView txtid,fntxt, lntxt, emailtxt, untxt, passtxt, gentxt, utypetxt, hobby1txt, hobby2txt, hobby3txt;
-
+    FloatingActionButton floatingActionButton;
 
     DBHelper db;
 
@@ -64,54 +67,14 @@ public class UpdateActivity extends AppCompatActivity {
         hobby2txt.setText(hobby2);
         hobby3txt.setText(hobby3);
 
-                /*fntxt.setText(user.getString(1));
-                lntxt.setText(user.getString(2));
-                emailtxt.setText(user.getString(3));
-                untxt.setText(user.getString(4));
-                passtxt.setText(user.getString(5));
-                gentxt.setText(user.getString(6));
-                utypetxt.setText(user.getString(7));
-                hobby1txt.setText(user.getString(8));
-                hobby2txt.setText(user.getString(9));
-                hobby3txt.setText(user.getString(10));*/
-       /* emailtxt.setText(user.getEmail());
-        untxt.setText(user.getUname());
-        passtxt.setText(user.getPass());
-        gentxt.setText(user.getGender());
-        utypetxt.setText(user.getUtype());
-        hobby1txt.setText(user.getHobby1());
-        hobby2txt.setText(user.getHobby2());
-        hobby3txt.setText(user.getHobby3());*/
 
+        floatingActionButton=findViewById(R.id.update_btn);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-
-       /* Cursor c= (Cursor) db.selectbyId();
-        if (c.moveToNext()) {
-            id = getIntent().getExtras().getInt("id");
-            String fname = getIntent().getExtras().getString("Fname");
-            String lname = getIntent().getExtras().getString("Lname");
-            String email = getIntent().getExtras().getString("Email");
-            String uname = getIntent().getExtras().getString("Uname");
-            String pass = getIntent().getExtras().getString("Pass");
-            String gen = getIntent().getExtras().getString("Gender");
-            String utype = getIntent().getExtras().getString("Utype");
-            String hobby1 = getIntent().getExtras().getString("Hobby1");
-            String hobby2 = getIntent().getExtras().getString("Hobby2");
-            String hobby3 = getIntent().getExtras().getString("Hobby3");
-            User u=new User(fname,lname,email,uname,pass,gen,utype,hobby1,hobby2,hobby3);
-            fntxt.setText(u.getFname());
-            lntxt.setText(u.getLname());
-            emailtxt.setText(u.getEmail());
-            untxt.setText(u.getUname());
-            passtxt.setText(u.getPass());
-            gentxt.setText(u.getGender());
-            utypetxt.setText(u.getUtype());
-            hobbytxt.setText(u.getHobby1());
-            hobbytxt.setText(u.getHobby2());
-            hobbytxt.setText(u.getHobby3());
-        }*/
-
+            }
+        });
 
 
 

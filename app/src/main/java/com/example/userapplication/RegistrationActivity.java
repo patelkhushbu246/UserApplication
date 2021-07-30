@@ -1,6 +1,7 @@
 package com.example.userapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -26,9 +27,10 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
     Spinner utype_spinner;
     TextView hobbies_tv;
     CheckBox movies_check,music_check,travelling_check;
-    Button signupbtn;
+    Button signupbtn,updatebtn;
     DBHelper db;
 
+    CircleImageView imageView;
     String[] usertype={"Admin","User"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,10 @@ public class RegistrationActivity extends AppCompatActivity implements AdapterVi
 
             }
         });
+
+        //update record
+        imageView=findViewById(R.id.pro_img);
+        updatebtn=findViewById(R.id.update_btn);
     }
 
 

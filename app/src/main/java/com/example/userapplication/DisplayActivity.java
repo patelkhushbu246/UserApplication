@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,6 +21,10 @@ public class DisplayActivity extends AppCompatActivity {
     ArrayList<User> arr;
     //create ListAdapter class reference
     ListAdapter listAdapter;
+
+    MenuItem menuItem;
+    TextView budgecount;
+    int pendingnotifi=3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,5 +92,23 @@ public class DisplayActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        menuItem=menu.findItem(R.id.action_notification);
+
+        if (pendingnotifi==0) {
+            menuItem.setActionView(null);
+        }else {
+            menuItem.setActionView(R.layout.activity_notification);
+            View view=menuItem.getActionView();
+            budgecount=view.findViewById(R.id.budge_count);
+            budgecount.setText(String.valueOf(pendingnotifi));
+        }
+
+        return super.onCreateOptionsMenu(menu);
     }
 }

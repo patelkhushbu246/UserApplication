@@ -4,7 +4,7 @@
 <item
     android:id="@+id/action_notification"
     android:icon="@drawable/ic_baseline_notifications_24"
-    android:title="Notification"
+    android:title="@string/app_name"
     android:actionLayout="@layout/activity_notification"
-    app:showAsAction="always"/>
+    app:showAsAction="always" />
 </menu>

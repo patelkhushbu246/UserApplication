@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
+    android:layout_width="?actionBarSize"
+    android:layout_height="?actionBarSize"
+
     android:focusable="true"
     style="?attr/actionBarStyle">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/notification_icon_size"
+        android:layout_height="@dimen/notification_icon_size"
         android:layout_gravity="center"
         android:src="@drawable/ic_baseline_notifications_24"/>
     <TextView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_gravity="right|end|top"
-        android:layout_marginEnd="-5dp"
-        android:layout_marginTop="-3dp"
-        android:layout_marginRight="-5dp"
+        android:layout_width="@dimen/budge_size"
+        android:layout_height="@dimen/budge_size"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/ic_budge"
         android:gravity="center"
-        android:padding="3dp"
         android:textColor="@color/white"
         android:text="0"
-        android:textSize="10sp"/>
+        android:textSize="10sp"
+        android:id="@+id/budge_count"
+        android:textAlignment="center"/>
 
 </FrameLayout>
