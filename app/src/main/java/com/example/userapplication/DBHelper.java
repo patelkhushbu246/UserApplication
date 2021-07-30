@@ -89,28 +89,30 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public User selectbyId(int id){
-        SQLiteDatabase db=this.getWritableDatabase();
-        String str="select * from registrationdetails where ID="+id;
-        Cursor c=db.rawQuery(str,null);
-        //Cursor c=db.rawQuery("select * from registrationdetails where ID='"+id+"'",null);
-        User u=new User();
-        if (c.moveToFirst()){
-            u.setId(c.getInt(c.getColumnIndex("ID")));
-            u.setFname(c.getString(c.getColumnIndex("Fname")));
-            u.setLname(c.getString(c.getColumnIndex("Lname")));
-            u.setEmail(c.getString(c.getColumnIndex("Email")));
-            u.setUname(c.getString(c.getColumnIndex("Uname")));
-            u.setPass(c.getString(c.getColumnIndex("Password")));
-            u.setGender(c.getString(c.getColumnIndex("Gender")));
-            u.setUtype(c.getString(c.getColumnIndex("Usertype")));
-            u.setHobby1(c.getString(c.getColumnIndex("Hobby1")));
-            u.setHobby2(c.getString(c.getColumnIndex("Hobby2")));
-            u.setHobby3(c.getString(c.getColumnIndex("Hobby3")));
+    public ArrayList<User> selectbyId(){
+        SQLiteDatabase db=this.getReadableDatabase();
+        //String str="select * from registrationdetails where ID="+"=?";
+        Cursor c=db.query(TABLE_REG,null,null,null,null,null,null);
+        ArrayList<User> arr=new ArrayList<>();
+        while (c.moveToNext()){
+                User u = new User();
+                u.setId(c.getInt(0));
+                u.setFname(c.getString(1));
+                u.setLname(c.getString(2));
+                u.setEmail(c.getString(3));
+                u.setUname(c.getString(4));
+                u.setPass(c.getString(5));
+                u.setGender(c.getString(6));
+                u.setUtype(c.getString(7));
+                u.setHobby1(c.getString(8));
+                u.setHobby2(c.getString(9));
+                u.setHobby3(c.getString(10));
+                arr.add(u);
+
         }
 
         db.close();
-        return u;
+        return arr;
     }
     public boolean checklogin(String username, String password){
         String[] column={KEY_ID};

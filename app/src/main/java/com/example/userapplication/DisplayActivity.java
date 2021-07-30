@@ -27,6 +27,7 @@ public class DisplayActivity extends AppCompatActivity {
 
         lv=(ListView)findViewById(R.id.lv_item);
         DBHelper db=new DBHelper(getApplicationContext());
+        arr=new ArrayList<>();
         arr=db.retrivedata();
         listAdapter=new ListAdapter(this,arr);
         lv.setAdapter(listAdapter);
@@ -34,23 +35,53 @@ public class DisplayActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               /* Intent i=new Intent(DisplayActivity.this,UpdateActivity.class);
-                startActivity(i);*/
-                TextView txtid=(TextView)findViewById(R.id.regid);
-                String str=txtid.getText().toString().trim();
+
+               /* TextView txtid=(TextView)findViewById(R.id.regid);
+                String str=txtid.getText().toString();
                 Intent i=new Intent(DisplayActivity.this,UpdateActivity.class);
                 i.putExtra("ID",str);
-               /* i.putExtra("Fname",str);
-                i.putExtra("Lname",str);
-                i.putExtra("Email",str);
+               /* i.putExtra("Fname", str);
+                i.putExtra("Lname", str);
+                i.putExtra("Email", str);
                 i.putExtra("Password",str);
+                i.putExtra("Uname",str);
                 i.putExtra("Gender",str);
                 i.putExtra("Usertype",str);
                 i.putExtra("Hobby1",str);
                 i.putExtra("Hobby2",str);
-                i.putExtra("Hobby3",str);*/
+                i.putExtra("Hobby3",str);
+                startActivity(i);*/
 
+                //String str=txtid.getText().toString();
+
+
+                arr=db.selectbyId();
+                User u = arr.get(position);
+                Intent i=new Intent(DisplayActivity.this,UpdateActivity.class);
+                String fname = u.getFname();
+                String lname=u.getLname();
+                String email=u.getEmail();
+                String uname=u.getUname();
+                String pass=u.getPass();
+                String gender=u.getGender();
+                String utype=u.getUtype();
+                String hobby1=u.getHobby1();
+                String hobby2=u.getHobby2();
+                String hobby3=u.getHobby3();
+
+                i.putExtra("ID",id);
+                i.putExtra("Fname",fname);
+                i.putExtra("Lname",lname);
+                i.putExtra("Email",email);
+                i.putExtra("Uname",uname);
+                i.putExtra("Password",pass);
+                i.putExtra("Gender",gender);
+                i.putExtra("Usertype",utype);
+                i.putExtra("Hobby1",hobby1);
+                i.putExtra("Hobby2",hobby2);
+                i.putExtra("Hobby3",hobby3);
                 startActivity(i);
+
 
             }
         });

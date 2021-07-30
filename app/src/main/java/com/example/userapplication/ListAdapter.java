@@ -26,6 +26,7 @@ public class ListAdapter extends BaseAdapter {
         this.arruser=arruser;
     }
 
+
     @Override
     public int getCount() {
         return arruser.size();
@@ -33,7 +34,7 @@ public class ListAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return arruser.get(position);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     private class ViewHolder{
-        TextView fname_tv,lname_tv,gender_tv,hobby_tv,regid_tv;
+        TextView fname_tv,lname_tv,gender_tv,hobby_tv;
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ListAdapter extends BaseAdapter {
             vh.lname_tv = (TextView) view.findViewById(R.id.tv_lname_dispay);
             vh.gender_tv = (TextView) view.findViewById(R.id.tv_gender_dispay);
             vh.hobby_tv = (TextView) view.findViewById(R.id.tv_hobby_dispay);
-            vh.regid_tv = (TextView) view.findViewById(R.id.regid);
+           // vh.regid_tv = (TextView) view.findViewById(R.id.regid);
             view.setTag(vh);
          }else {
             vh=(ViewHolder)view.getTag();
@@ -71,7 +72,7 @@ public class ListAdapter extends BaseAdapter {
             vh.hobby_tv.setText(arruser.get(i).getHobby2());
        // if (arruser.get(i).getHobby1().equals("travelling"))
             vh.hobby_tv.setText(arruser.get(i).getHobby3());
-        vh.regid_tv.setText(arruser.get(i).getId()+"");
+        //vh.regid_tv.setText(arruser.get(i).getId()+"");
 
         return view;
     }
